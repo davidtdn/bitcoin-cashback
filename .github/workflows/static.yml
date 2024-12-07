@@ -1,0 +1,22 @@
+site:
+  name: Bitcoin Cashback
+  baseurl: "/"
+  language: sk # Site language (Slovak)
+
+build:
+  publish: ./public # Directory where your built files are located
+  command: npm run build # Command to build your site (if needed)
+
+redirects:
+  - from: "/old-page" # Redirect from an old URL
+    to: "/new-page"   # Redirect to a new URL
+    status: 301       # Permanent redirect
+
+headers:
+  "/assets/*": # Apply these headers to all files in the assets folder
+    - key: Cache-Control
+      value: "public, max-age=31536000" # Cache assets for 1 year
+
+error_pages:
+  - error_code: 404
+    file: /404.html # Custom 404 error page
