@@ -43,7 +43,8 @@
             <div class="bg-white shadow-md rounded-lg p-4 max-w-2xl mx-auto mb-8">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-4">
-                        <img src="/Users/david/Downloads/test.1/material/depositphotos_121730402-stock-illustration-headset-icon-flat-design.jpg" alt="Speaker" class="w-12 h-12 rounded-full">
+                        <!-- Updated image path -->
+                        <img src="assets/bitcoin-cashback.jpg" alt="Speaker" class="w-12 h-12 rounded-full">
                         <div>
                             <h3 class="font-semibold text-lg">Úvodná hlasová správa</h3>
                             <div class="audio-wave flex">
@@ -59,9 +60,10 @@
                         Prehrať
                     </button>
                 </div>
+                <!-- Change the source path to relative file path in the assets folder -->
                 <audio id="introAudio" class="hidden">
-                    <source src="path/to/your/audio.mp3" type="audio/mpeg">
-                    <source src="path/to/your/audio.ogg" type="audio/ogg">
+                    <source src="assets/Hlasovka.mp3" type="audio/mpeg">
+                    <source src="assets/Hlasovka.ogg" type="audio/ogg">
                     Váš prehliadač nepodporuje audio element.
                 </audio>
             </div>
@@ -76,9 +78,10 @@
                         <h3 class="text-xl font-medium mb-4">Video 1</h3>
                         <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                             <div class="aspect-w-16 aspect-h-9">
+                                <!-- Change the source path to relative file path in the assets folder -->
                                 <video controls class="w-full h-full object-cover">
-                                    <source src="path/to/video1.mp4" type="video/mp4">
-                                    <source src="path/to/video1.webm" type="video/webm">
+                                    <source src="assets/Cashback.mp4" type="video/mp4">
+                                    <source src="assets/Cashback.webm" type="video/webm">
                                     Váš prehliadač nepodporuje video element.
                                 </video>
                             </div>
@@ -89,9 +92,10 @@
                         <h3 class="text-xl font-medium mb-4">Video 2</h3>
                         <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg">
                             <div class="aspect-w-16 aspect-h-9">
+                                <!-- Change the source path to relative file path in the assets folder -->
                                 <video controls class="w-full h-full object-cover">
-                                    <source src="path/to/video2.mp4" type="video/mp4">
-                                    <source src="path/to/video2.webm" type="video/webm">
+                                    <source src="assets/Rytmus.mp4" type="video/mp4">
+                                    <source src="assets/Rytmus.webm" type="video/webm">
                                     Váš prehliadač nepodporuje video element.
                                 </video>
                             </div>
@@ -103,7 +107,7 @@
     </div>
 
     <script>
-        // Audio přehrávač
+        // Audio player functionality
         document.getElementById('playAudio').addEventListener('click', function() {
             const audio = document.getElementById('introAudio');
             if (audio.paused) {
@@ -115,10 +119,10 @@
             }
         });
 
-        // GSAP animace
+        // GSAP animations for scrolling
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animace videí při scrollování
+        // Video animation on scroll
         gsap.utils.toArray('.video-container').forEach(video => {
             gsap.to(video, {
                 opacity: 1,
