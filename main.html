@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Cashback</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        html { 
+            scroll-behavior: smooth; 
+        }
+        .audio-wave {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .audio-wave div {
+            width: 4px;
+            height: 20px;
+            background-color: #4A90E2;
+            border-radius: 2px;
+            animation: wave 1s infinite alternate;
+        }
+        .audio-wave div:nth-child(2) { animation-delay: 0.1s; }
+        .audio-wave div:nth-child(3) { animation-delay: 0.2s; }
+        .audio-wave div:nth-child(4) { animation-delay: 0.3s; }
+        .audio-wave div:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes wave {
+            0% { height: 10px; }
+            100% { height: 30px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-600 mb-4">Bitcoin Cashback</h1>
+            
+            <!-- Hlasová správa sekce -->
+            <div class="bg-white shadow-md rounded-lg p-4 max-w-2xl mx-auto mb-8">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <img src="/Users/david/Downloads/test.1/material/depositphotos_121730402-stock-illustration-headset-icon-flat-design.jpg" alt="Speaker" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h3 class="font-semibold text-lg">Úvodná hlasová správa</h3>
+                            <div class="audio-wave flex">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="playAudio" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
+                        Prehrať
+                    </button>
+                </div>
+                <audio id="introAudio" class="hidden">
+                    <source src="path/to/your/audio.mp3" type="audio/mpeg">
+                    <source src="path/to/your/audio.ogg" type="audio/ogg">
+                    Váš prehliadač nepodporuje audio element.
+                </audio>
+            </div>
+        </header>
+
+        <main>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-center mb-6">Naše videá</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="video-container opacity-0">
+                        <h3 class="text-xl font-medium mb-4">Video 1</h3>
+                        <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                            <div class="aspect-w-16 aspect-h-9">
+                                <video controls class="w-full h-full object-cover">
+                                    <source src="path/to/video1.mp4" type="video/mp4">
+                                    <source src="path/to/video1.webm" type="video/webm">
+                                    Váš prehliadač nepodporuje video element.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-container opacity-0">
+                        <h3 class="text-xl font-medium mb-4">Video 2</h3>
+                        <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                            <div class="aspect-w-16 aspect-h-9">
+                                <video controls class="w-full h-full object-cover">
+                                    <source src="path/to/video2.mp4" type="video/mp4">
+                                    <source src="path/to/video2.webm" type="video/webm">
+                                    Váš prehliadač nepodporuje video element.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Audio přehrávač
+        document.getElementById('playAudio').addEventListener('click', function() {
+            const audio = document.getElementById('introAudio');
+            if (audio.paused) {
+                audio.play();
+                this.textContent = 'Zastaviť';
+            } else {
+                audio.pause();
+                this.textContent = 'Prehrať';
+            }
+        });
+
+        // GSAP animace
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animace videí při scrollování
+        gsap.utils.toArray('.video-container').forEach(video => {
+            gsap.to(video, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: video,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
